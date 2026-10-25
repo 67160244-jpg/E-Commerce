@@ -1,0 +1,180 @@
+/* Mochi Vita - Custom Styles */
+:root {
+    --primary-color: #10b981;
+    --primary-hover: #059669;
+    --primary-soft: #ecfdf5;
+    --secondary-color: #0ea5e9;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+body {
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+    background-color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Navbar */
+.navbar-mochi {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.navbar-brand-mochi {
+    font-weight: 700;
+    font-size: 1.45rem;
+    color: #047857 !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Product Card */
+.product-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.25s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: #cbd5e1;
+}
+.product-card-img-wrap {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+    background-color: #f1f5f9;
+}
+.product-card-img-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+.product-card:hover .product-card-img-wrap img {
+    transform: scale(1.05);
+}
+
+.product-badge-out {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.product-badge-low {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f59e0b;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.product-badge-sale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8b5cf6;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.price-current {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #047857;
+}
+
+.price-compare {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+    margin-left: 0.4rem;
+}
+
+/* Cart badge */
+.badge-cart-count {
+    font-size: 0.75rem;
+    transform: translate(-25%, -25%);
+}
+
+/* Category Pill */
+.category-pill {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+.category-pill:hover, .category-pill.active {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+/* Footer disclaimer */
+.disclaimer-box {
+    background-color: #f1f5f9;
+    border-left: 4px solid #f59e0b;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+/* Admin Sidebar & Header */
+.admin-sidebar {
+    min-height: calc(100vh - 56px);
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+.admin-sidebar a {
+    color: #cbd5e1;
+    padding: 0.75rem 1.25rem;
+    display: block;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 0.2rem 0.5rem;
+    transition: all 0.2s ease;
+}
+.admin-sidebar a:hover, .admin-sidebar a.active {
+    background-color: #334155;
+    color: #ffffff;
+}
