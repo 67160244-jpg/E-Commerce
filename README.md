@@ -6,9 +6,9 @@
 
 ## 🌐 ลิงก์เข้าสู่เว็บไซต์ (Live Demo & Deployment Links)
 
-สามารถคลิกเปิดเข้าชมและทดสอบระบบได้ทันทีผ่านลิงก์สาธารณะที่มีใบรับรองความปลอดภัย SSL สมบูรณ์ (Live Demo via Cloudflare Tunnel) หรือทดสอบบนเครื่อง Localhost:
+สามารถคลิกเปิดเข้าชมและทดสอบระบบได้ทันทีผ่านลิงก์สาธารณะที่มีใบรับรองความปลอดภัย SSL สมบูรณ์ (ออนไลน์ตลอดเวลา เข้าได้จากทุกอุปกรณ์ทั้งคอมพิวเตอร์และโทรศัพท์มือถือ):
 
-* 🛍️ **เข้าสู่หน้าร้านค้าออนไลน์ (Live Storefront — ใช้งานได้ทันที 100%)**:  
+* 🛍️ **เข้าสู่หน้าร้านค้าออนไลน์ (Live Storefront — ใช้งานได้ทันที)**:  
   👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)**
 * 🔑 **หน้าเข้าสู่ระบบ (Login)**:  
   👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php)**
@@ -18,17 +18,6 @@
   👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/health.php](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/health.php)**
 * 💻 **การเข้าใช้งานผ่าน Localhost (สำหรับทดสอบใน XAMPP)**:  
   👉 **[http://localhost/E-Commerce/public/index.php](http://localhost/E-Commerce/public/index.php)**
-
----
-
-### ☁️ สำหรับลิงก์บนโฮสต์ถาวรฟรี (InfinityFree Hosting URL)
-
-> **คำแนะนำเรื่องใบรับรองความปลอดภัย (SSL) บนโฮสต์ฟรี**:  
-> หากเข้าสู่โดเมนบนโฮสต์ฟรีครั้งแรกแล้วพบข้อความเตือนของเบราว์เซอร์ **"การเชื่อมต่อของคุณไม่เป็นส่วนตัว" (NET::ERR_CERT_AUTHORITY_INVALID)** เกิดจากโฮสต์ฟรีเพิ่งสร้าง Subdomain ใหม่และยังไม่ได้เปิดใช้งานใบรับรอง SSL
-> 
-> **วิธีแก้ไขมี 2 วิธี**:
-> 1. **เปิดผ่านปุ่มขั้นสูง**: คลิกปุ่ม **"ขั้นสูง (Advanced)"** ด้านล่างซ้าย > แล้วคลิก **"ไปยังเว็บไซต์ (ไม่ปลอดภัย) / Proceed to..."** ก็จะสามารถเข้าใช้งานได้ทันที
-> 2. **เปิดใช้งาน Free SSL ถาวร**: ในแผงควบคุมของ InfinityFree ให้ไปที่เมนู **Free SSL Certificates** > เลือกชื่อโดเมนของคุณ > กดขอใบรับรอง (Request SSL) > แล้วกด **Install SSL Certificate Automatically** รอประมาณ 5–15 นาที ระบบจะมีกุญแจเขียวปลอดภัย 100% โดยไม่มีข้อความเตือนอีกต่อไป
 
 > **จุดเด่นด้านดีไซน์และเทคโนโลยี**:
 > - 🎨 **ธีมสีฟ้าและเขียวอ่อนละมุน**: โทนสี Soft Sky Blue (`#e0f2fe`) และ Mint Green (`#f0fdf4`) อ่านสบายตา ไม่กลืนกับพื้นหลัง พร้อมค่าคอนทราสต์ที่ผ่านเกณฑ์อ่านง่าย
