@@ -150,7 +150,7 @@ function get_order_status_badge(string $status): string {
 }
 
 /**
- * ส่งคืน URL รูปภาพสินค้า พร้อมระบบ Fallback เป็น Placeholder หากไม่พบรูป
+ * ส่งคืน URL รูปภาพสินค้า พร้อมระบบ Fallback อัจฉริยะ (รองรับทั้ง SVG และ JPG)
  * @param string|null $imagePath
  * @return string
  */
@@ -161,6 +161,23 @@ function get_product_image_url(?string $imagePath): string {
         if (!empty($fullPath) && file_exists($fullPath)) {
             return url($cleanPath);
         }
+
+        // ลองสลับนามสกุล .jpg <-> .svg
+        if (str_ends_with($cleanPath, '.jpg')) {
+            $svgPath = substr($cleanPath, 0, -4) . '.svg';
+            if (defined('APP_ROOT') && file_exists(APP_ROOT . '/' . $svgPath)) {
+                return url($svgPath);
+            }
+        } elseif (str_ends_with($cleanPath, '.svg')) {
+            $jpgPath = substr($cleanPath, 0, -4) . '.jpg';
+            if (defined('APP_ROOT') && file_exists(APP_ROOT . '/' . $jpgPath)) {
+                return url($jpgPath);
+            }
+        }
+    }
+
+    if (defined('APP_ROOT') && file_exists(APP_ROOT . '/assets/products/placeholder.svg')) {
+        return url('assets/products/placeholder.svg');
     }
     return url('assets/products/placeholder.jpg');
 }
