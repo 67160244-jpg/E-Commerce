@@ -51,8 +51,8 @@ $currentUser = current_user();
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand navbar-brand-mochi" href="<?= url('public/index.php') ?>">
-            <i class="bi bi-capsule-pill text-success fs-3"></i>
-            <span><?= STORE_NAME ?></span>
+            <i class="bi bi-capsule-pill fs-3" style="color: #059669;"></i>
+            <span><strong style="color: #0c4a6e;">Mochi</strong> <span style="color: #059669; font-weight: 600;">Vita</span></span>
         </a>
 
         <!-- Mobile Toggler -->
@@ -63,11 +63,11 @@ $currentUser = current_user();
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarMain">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-nav-item">
-                    <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'public') !== false) ? 'active fw-bold text-success' : '' ?>" href="<?= url('public/index.php') ?>">หน้าแรก</a>
+                <li class="nav-item">
+                    <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'public') !== false) ? 'active fw-bold' : '' ?>" style="<?= (basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'public') !== false) ? 'color: #059669 !important;' : '' ?>" href="<?= url('public/index.php') ?>">หน้าแรก</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) === 'products.php') ? 'active fw-bold text-success' : '' ?>" href="<?= url('public/products.php') ?>">สินค้าทั้งหมด</a>
+                    <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) === 'products.php') ? 'active fw-bold' : '' ?>" style="<?= (basename($_SERVER['PHP_SELF']) === 'products.php') ? 'color: #059669 !important;' : '' ?>" href="<?= url('public/products.php') ?>">สินค้าทั้งหมด</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,8 +84,8 @@ $currentUser = current_user();
             <!-- Search Form -->
             <form class="d-flex me-3 my-2 my-lg-0" action="<?= url('public/products.php') ?>" method="GET" style="max-width: 280px; width: 100%;">
                 <div class="input-group">
-                    <input class="form-control form-control-sm border-end-0" type="search" name="q" placeholder="ค้นหาวิตามิน, แบรนด์..." value="<?= e($_GET['q'] ?? '') ?>" aria-label="Search">
-                    <button class="btn btn-sm btn-outline-secondary border-start-0 bg-white text-muted" type="submit">
+                    <input class="form-control form-control-sm border-end-0" type="search" name="q" placeholder="ค้นหาวิตามิน, แบรนด์..." value="<?= e($_GET['q'] ?? '') ?>" aria-label="Search" style="border-color: #bae6fd;">
+                    <button class="btn btn-sm border-start-0 bg-white" type="submit" style="border-color: #bae6fd; color: #0284c7;">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
@@ -94,7 +94,7 @@ $currentUser = current_user();
             <!-- Right Actions: Cart & User -->
             <div class="d-flex align-items-center gap-2">
                 <!-- Shopping Cart Button -->
-                <a href="<?= url('public/cart.php') ?>" class="btn btn-outline-success position-relative me-2 btn-sm rounded-pill px-3 py-1">
+                <a href="<?= url('public/cart.php') ?>" class="btn btn-sm rounded-pill px-3 py-1 me-2 position-relative shadow-sm" style="background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0;">
                     <i class="bi bi-cart3 fs-6 me-1"></i> ตะกร้า
                     <?php if ($cartCount > 0): ?>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -107,7 +107,7 @@ $currentUser = current_user();
                 <!-- User Dropdown -->
                 <?php if ($currentUser): ?>
                     <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle btn-sm rounded-pill px-3 py-1 border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-light dropdown-toggle btn-sm rounded-pill px-3 py-1 border" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-color: #bae6fd !important;">
                             <i class="bi bi-person-circle me-1 text-success"></i> <?= e($currentUser['name']) ?>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
@@ -135,7 +135,7 @@ $currentUser = current_user();
                     </div>
                 <?php else: ?>
                     <a href="<?= url('public/login.php') ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1">เข้าสู่ระบบ</a>
-                    <a href="<?= url('public/register.php') ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-1 text-white" style="background-color: #10b981; border-color: #10b981;">สมัครสมาชิก</a>
+                    <a href="<?= url('public/register.php') ?>" class="btn btn-sm rounded-pill px-3 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #059669 0%, #0284c7 100%); border: none;">สมัครสมาชิก</a>
                 <?php endif; ?>
             </div>
         </div>

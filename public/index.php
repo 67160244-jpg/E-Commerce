@@ -43,41 +43,45 @@ $pageTitle = 'หน้าแรก';
 require_once APP_ROOT . '/includes/header.php';
 ?>
 
-<!-- Hero Banner Section -->
-<section class="py-5 bg-gradient rounded-4 my-3 text-white shadow-sm" style="background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);">
-    <div class="container py-4">
+<!-- Hero Banner Section (สีฟ้าและเขียวอ่อนละมุน อ่านสบายตา คอนทราสต์ชัดเจน) -->
+<section class="hero-banner-soft p-4 p-md-5 my-4">
+    <div class="container py-2">
         <div class="row align-items-center g-4">
             <div class="col-lg-7">
-                <span class="badge bg-white text-success px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm">
+                <span class="badge hero-badge-pill px-3 py-2 rounded-pill mb-3">
                     ✨ คุณภาพระดับพรีเมียม มาตรฐานสากล
                 </span>
-                <h1 class="display-4 fw-bold mb-3">สุขภาพดีเริ่มต้นได้ทุกวัน กับ <?= STORE_NAME ?></h1>
-                <p class="lead mb-4 opacity-90">
+                <h1 class="display-4 hero-title mb-3">
+                    สุขภาพดีเริ่มต้นได้ทุกวัน กับ <span class="brand-highlight"><?= STORE_NAME ?></span>
+                </h1>
+                <p class="hero-subtitle mb-4">
                     ครบครันด้วยวิตามินรวม แร่ธาตุ โอเมก้า-3 โพรไบโอติก และสารอาหารเสริมสำหรับทุกคนในครอบครัว
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="<?= url('public/products.php') ?>" class="btn btn-light btn-lg px-4 py-2 rounded-pill fw-bold text-success shadow-sm">
+                    <a href="<?= url('public/products.php') ?>" class="btn hero-btn-primary btn-lg px-4 py-2 rounded-pill fw-bold">
                         <i class="bi bi-bag-check me-2"></i> ช้อปสินค้าทั้งหมด
                     </a>
-                    <a href="<?= url('public/products.php?is_featured=1') ?>" class="btn btn-outline-light btn-lg px-4 py-2 rounded-pill fw-semibold">
-                        สินค้าแนะนำยอดนิยม
+                    <a href="<?= url('public/products.php?is_featured=1') ?>" class="btn hero-btn-secondary btn-lg px-4 py-2 rounded-pill fw-semibold">
+                        <i class="bi bi-star-fill text-warning me-1"></i> สินค้าแนะนำยอดนิยม
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 text-center d-none d-lg-block">
-                <div class="p-4 bg-white bg-opacity-10 rounded-4 backdrop-blur border border-white border-opacity-25 shadow">
-                    <i class="bi bi-shield-heart fs-1 text-white mb-2"></i>
-                    <h4 class="fw-bold text-white mb-2">จัดส่งฟรีทั่วไทย!</h4>
-                    <p class="mb-0 text-white-50">เมื่อมียอดสั่งซื้อตั้งแต่ <?= format_price(FREE_SHIPPING_THRESHOLD) ?> ขึ้นไป</p>
-                    <hr class="border-white border-opacity-25 my-3">
+                <div class="p-4 hero-card-promo">
+                    <div class="d-inline-flex p-3 rounded-circle mb-2" style="background-color: #e0f2fe; color: #0284c7;">
+                        <i class="bi bi-shield-heart fs-2"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2" style="color: #0369a1;">จัดส่งฟรีทั่วไทย!</h4>
+                    <p class="mb-0 text-muted">เมื่อมียอดสั่งซื้อตั้งแต่ <strong style="color: #059669;"><?= format_price(FREE_SHIPPING_THRESHOLD) ?></strong> ขึ้นไป</p>
+                    <hr class="my-3 text-muted opacity-25">
                     <div class="d-flex justify-content-around text-start">
                         <div>
-                            <small class="text-white-50 d-block">จัดส่งรวดเร็ว</small>
-                            <strong class="text-white">1 - 3 วันทำการ</strong>
+                            <small class="text-muted d-block">จัดส่งรวดเร็ว</small>
+                            <strong style="color: #0c4a6e;"><i class="bi bi-truck text-primary me-1"></i> 1 - 3 วันทำการ</strong>
                         </div>
                         <div>
-                            <small class="text-white-50 d-block">รับประกันคุณภาพ</small>
-                            <strong class="text-white">ของแท้ 100%</strong>
+                            <small class="text-muted d-block">รับประกันคุณภาพ</small>
+                            <strong style="color: #059669;"><i class="bi bi-patch-check-fill me-1"></i> ของแท้ 100%</strong>
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,21 @@
 /* Mochi Vita - Custom Styles */
 :root {
-    --primary-color: #10b981;
-    --primary-hover: #059669;
+    --primary-color: #059669;
+    --primary-hover: #047857;
     --primary-soft: #ecfdf5;
-    --secondary-color: #0ea5e9;
-    --text-dark: #1e293b;
+    --secondary-color: #0284c7;
+    --secondary-hover: #0369a1;
+    --secondary-soft: #e0f2fe;
+    --accent-mint: #34d399;
+    --accent-sky: #38bdf8;
+    --text-dark: #0f172a;
+    --text-secondary: #334155;
     --text-muted: #64748b;
     --border-color: #e2e8f0;
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --border-soft-blue: #bae6fd;
+    --border-soft-green: #a7f3d0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: 0 12px 20px -3px rgba(14, 165, 233, 0.08), 0 4px 6px -4px rgba(16, 185, 129, 0.05);
 }
 
 body {
@@ -27,16 +34,112 @@ main {
 /* Navbar */
 .navbar-mochi {
     background: #ffffff;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    border-bottom: 1px solid #e0f2fe;
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.04);
 }
 .navbar-brand-mochi {
     font-weight: 700;
     font-size: 1.45rem;
-    color: #047857 !important;
+    color: #059669 !important;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* Hero Banner - ธีมสีฟ้าและเขียวอ่อนละมุน อ่านสบายตา */
+.hero-banner-soft {
+    background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 50%, #f0fdfa 100%);
+    border: 1px solid var(--border-soft-blue);
+    border-radius: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.1), 0 8px 10px -6px rgba(16, 185, 129, 0.06);
+}
+
+.hero-banner-soft::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-banner-soft::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: -30px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-badge-pill {
+    background: #ffffff;
+    color: #047857;
+    border: 1px solid var(--border-soft-green);
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.08);
+}
+
+.hero-title {
+    color: #0c4a6e; /* น้ำเงินอมเขียวเข้ม ชัดเจน คอนทราสต์สูง อ่านสบายตา */
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.hero-title .brand-highlight {
+    color: #059669; /* เขียวมรกตธรรมชาติ */
+}
+
+.hero-subtitle {
+    color: #334155; /* Slate ชัดเจน ไม่จาง */
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.hero-btn-primary {
+    background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    transition: all 0.25s ease;
+}
+.hero-btn-primary:hover {
+    background: linear-gradient(135deg, #047857 0%, #0f766e 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+}
+
+.hero-btn-secondary {
+    background: #ffffff;
+    color: #0284c7;
+    border: 1.5px solid #38bdf8;
+    box-shadow: 0 2px 6px rgba(56, 189, 248, 0.1);
+    transition: all 0.25s ease;
+}
+.hero-btn-secondary:hover {
+    background: #f0f9ff;
+    color: #0369a1;
+    border-color: #0284c7;
+    transform: translateY(-2px);
+}
+
+.hero-card-promo {
+    background: #ffffff;
+    border: 1px solid var(--border-soft-blue);
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.12);
+    position: relative;
+    z-index: 1;
 }
 
 /* Product Card */
@@ -53,13 +156,13 @@ main {
 .product-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--card-hover-shadow);
-    border-color: #cbd5e1;
+    border-color: #93c5fd;
 }
 .product-card-img-wrap {
     position: relative;
     padding-top: 100%;
     overflow: hidden;
-    background-color: #f1f5f9;
+    background-color: #f8fafc;
 }
 .product-card-img-wrap img {
     position: absolute;
@@ -103,7 +206,7 @@ main {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: #8b5cf6;
+    background: #0284c7;
     color: white;
     font-size: 0.75rem;
     padding: 0.25rem 0.6rem;
@@ -114,7 +217,7 @@ main {
 .price-current {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #047857;
+    color: #059669;
 }
 
 .price-compare {
@@ -122,12 +225,6 @@ main {
     color: #94a3b8;
     text-decoration: line-through;
     margin-left: 0.4rem;
-}
-
-/* Cart badge */
-.badge-cart-count {
-    font-size: 0.75rem;
-    transform: translate(-25%, -25%);
 }
 
 /* Category Pill */
@@ -144,37 +241,20 @@ main {
     transition: all 0.2s ease;
 }
 .category-pill:hover, .category-pill.active {
-    background: #10b981;
+    background: #059669;
     color: #ffffff;
-    border-color: #10b981;
+    border-color: #059669;
 }
 
 /* Footer disclaimer */
 .disclaimer-box {
-    background-color: #f1f5f9;
-    border-left: 4px solid #f59e0b;
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+    border-right: 1px solid #d1fae5;
+    border-top: 1px solid #d1fae5;
+    border-bottom: 1px solid #d1fae5;
     padding: 1rem 1.25rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    color: #475569;
-}
-
-/* Admin Sidebar & Header */
-.admin-sidebar {
-    min-height: calc(100vh - 56px);
-    background-color: #1e293b;
-    color: #f8fafc;
-}
-.admin-sidebar a {
-    color: #cbd5e1;
-    padding: 0.75rem 1.25rem;
-    display: block;
-    text-decoration: none;
-    border-radius: 6px;
-    margin: 0.2rem 0.5rem;
-    transition: all 0.2s ease;
-}
-.admin-sidebar a:hover, .admin-sidebar a.active {
-    background-color: #334155;
-    color: #ffffff;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #065f46;
 }
