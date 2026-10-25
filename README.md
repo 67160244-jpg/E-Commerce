@@ -31,11 +31,10 @@
 
 เพื่อให้โดเมน `https://mochivita.infinityfreeapp.com/public/` ออนไลน์และเปิดเข้าชมได้จริง โดยไม่ติดหน้าเตือนสีแดง (NET::ERR_CERT_AUTHORITY_INVALID) สามารถทำตาม 8 ขั้นตอนนี้ได้ทันที (ใช้เวลาประมาณ 3–5 นาที ฟรี 100%):
 
-### 1. สมัครสมาชิก InfinityFree
-1. เปิดเบราว์เซอร์ไปที่: **[https://www.infinityfree.com/register](https://www.infinityfree.com/register)**
-2. กรอก **Email Address** ของคุณ และตั้ง **Password** (ยืนยันรหัสผ่านอีกครั้ง)
-3. ติ๊กเครื่องหมายถูกยอมรับข้อตกลง แล้วกดปุ่มสีฟ้า **"Sign Up"**
-4. เปิดกล่องข้อความในอีเมลของคุณ แล้วคลิกปุ่ม **"Verify Email Address"** เพื่อยืนยันตัวตน
+### 1. สมัครสมาชิก InfinityFree (เข้าสู่ระบบด้วย GitHub ได้ทันทีใน 1 คลิก)
+1. เปิดเบราว์เซอร์ไปที่: **[https://dash.infinityfree.com/register](https://dash.infinityfree.com/register)**
+2. คลิกปุ่ม **"Sign up with GitHub"** (สามารถเชื่อมต่อสิทธิ์ผ่านบัญชี GitHub เพื่อเข้าสู่ระบบได้ทันที โดยไม่ต้องกรอกฟอร์ม ไม่ต้องรออีเมล)  
+   *(หรือเลือก **"Sign up with Google"** หรือคลิก **"Sign up with Email"** เพื่อใช้อีเมลทั่วไปได้ตามสะดวก)*
 
 ### 2. สร้าง Hosting Account และเลือก Subdomain mochivita
 1. เข้าสู่แดชบอร์ด InfinityFree แล้วคลิกปุ่มสีเขียว **"+ Create Account"**
