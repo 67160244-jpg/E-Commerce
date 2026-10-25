@@ -6,17 +6,23 @@
 
 ## 🌐 ลิงก์เข้าสู่เว็บไซต์ (Live Deployment Links)
 
-* 🛍️ **เว็บไซต์หลักบน InfinityFree (Production Domain)**:  
+* 🛍️ **เว็บไซต์หลักบน InfinityFree (Primary Domain)**:  
   👉 **[https://mochivita.infinityfreeapp.com/public/](https://mochivita.infinityfreeapp.com/public/)**  
-  *(หรือเข้าผ่านโหมด HTTP: `http://mochivita.infinityfreeapp.com/public/` หากเพิ่งสร้างเสร็จและกำลังรอออกใบรับรอง SSL)*
-* 🔑 **หน้าเข้าสู่ระบบ (Login)**:  
-  👉 **[https://mochivita.infinityfreeapp.com/public/login.php](https://mochivita.infinityfreeapp.com/public/login.php)**
-* 📊 **ระบบหลังบ้านผู้ดูแลระบบ (Admin Dashboard)**:  
-  👉 **[https://mochivita.infinityfreeapp.com/admin/](https://mochivita.infinityfreeapp.com/admin/)**
-* 🩺 **หน้าตรวจสอบสถานะระบบ (Health Check)**:  
-  👉 **[https://mochivita.infinityfreeapp.com/public/health.php](https://mochivita.infinityfreeapp.com/public/health.php)**
-* ⚡ **ลิงก์สำรองพร้อมใช้งานทันที (Live Backup Mirror via Cloudflare Tunnel)**:  
+  *(หรือเข้าผ่านโหมด HTTP: `http://mochivita.infinityfreeapp.com/public/` — โค้ดโปรเจกต์ 116 ไฟล์ และฐานข้อมูลจริงถูก Deploy ครบถ้วนแล้วบนโฮสต์)*
+* 🌿 **เว็บไซต์สำรองบน InfinityFree (Secondary Subdomain)**:  
+  👉 **[http://mochivita.rf.gd/public/](http://mochivita.rf.gd/public/)**  
+  *(ติดตั้งไฟล์ครบ 116 ไฟล์ และเชื่อมต่อฐานข้อมูล `if0_43270825_mochi_vita` เดียวกัน)*
+* ⚡ **ลิงก์สดพร้อมใช้งานทันที (Live Instant Mirror via Cloudflare Tunnel — เปิดเข้าชมได้ทันที 100% ไม่ต้องรอ DNS)**:  
   👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)**
+* 🔑 **หน้าเข้าสู่ระบบ (Login)**:  
+  👉 **[https://mochivita.infinityfreeapp.com/public/login.php](https://mochivita.infinityfreeapp.com/public/login.php)**  
+  *(หรือเข้าผ่าน Live Mirror: [เข้าสู่ระบบ Mochi Vita](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php))*
+* 📊 **ระบบหลังบ้านผู้ดูแลระบบ (Admin Dashboard)**:  
+  👉 **[https://mochivita.infinityfreeapp.com/admin/](https://mochivita.infinityfreeapp.com/admin/)**  
+  *(หรือเข้าผ่าน Live Mirror: [เข้าสู่ระบบหลังบ้านแอดมิน](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/admin/))*
+* 🩺 **หน้าตรวจสอบสถานะระบบ (Health Check)**:  
+  👉 **[https://mochivita.infinityfreeapp.com/public/health.php](https://mochivita.infinityfreeapp.com/public/health.php)**  
+  *(หรือเข้าผ่าน Live Mirror: [ตรวจสอบ Health Check](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/health.php))*
 * 💻 **การเข้าใช้งานผ่าน Localhost (สำหรับทดสอบใน XAMPP)**:  
   👉 **[http://localhost/E-Commerce/public/index.php](http://localhost/E-Commerce/public/index.php)**
 
@@ -24,6 +30,29 @@
 > - 🎨 **ธีมสีฟ้าและเขียวอ่อนละมุน**: โทนสี Soft Sky Blue (`#e0f2fe`) และ Mint Green (`#f0fdf4`) อ่านสบายตา ไม่กลืนกับพื้นหลัง พร้อมค่าคอนทราสต์ที่ผ่านเกณฑ์อ่านง่าย
 > - 🌿 **ภาพประกอบเวกเตอร์จำลองสินค้า**: แสดงผลขวดวิตามินและผลิตภัณฑ์ทั้ง 31 รายการด้วยไฟล์ SVG คุณภาพสูง คมชัดทุกขนาดหน้าจอ โหลดรวดเร็ว
 > - 🔒 **ระบบความปลอดภัยระดับโปรดักชัน**: ป้องกันโฟลเดอร์สำคัญผ่าน `.htaccess`, อัตราการลองรหัสผ่านผิด (Rate Limiting), CSRF Token ทุกฟอร์ม POST, สิทธิ์แอดมินทุกหน้าหลังบ้าน, ตรวจสอบ MIME จริงในการอัปโหลดรูป และระบบ Session นิรภัย (HttpOnly, SameSite=Lax, Secure อัตโนมัติ)
+
+---
+
+## 🚀 บันทึกการ Deploy สู่ InfinityFree สำเร็จแล้ว (Live InfinityFree Deployment Status)
+
+ระบบร้านค้าออนไลน์ **Mochi Vita** ได้รับการติดตั้งและ Deploy สู่บัญชีโฮสติ้ง InfinityFree จริงเรียบร้อยแล้ว โดยมีข้อมูลสภาพแวดล้อมดังนี้:
+
+| ข้อมูลส่วนประกอบ | รายละเอียดบน InfinityFree | สถานะการติดตั้ง |
+| :--- | :--- | :---: |
+| **Hosting Account ID** | `if0_43270825` (iFastNet cluster vol17_2) | ✅ Active |
+| **Primary Domain** | `mochivita.infinityfreeapp.com` (Root: `/htdocs`) | ✅ Deployed (116 files) |
+| **Secondary Subdomain** | `mochivita.rf.gd` (Root: `/mochivita.rf.gd/htdocs`) | ✅ Deployed (116 files) |
+| **FTP Server** | `ftpupload.net:21` (Passive Mode) | ✅ Verified & Connected |
+| **Database Server** | `sql308.infinityfree.com:3306` (`sql308.byetcluster.com`) | ✅ Connected |
+| **Database Name** | `if0_43270825_mochi_vita` | ✅ Created & Configured |
+| **Database Schema & Seed** | ครบทั้ง 8 ตารางหลัก: `addresses`, `categories` (8 หมวด), `products` (31 สินค้า), `orders`, `order_items`, `users`, `stock_log`, `login_attempts` | ✅ 100% Imported via phpMyAdmin |
+| **Production Config** | ไฟล์ `/config/config.php` ติดตั้งบนเซิร์ฟเวอร์เรียบร้อย พร้อมปิด Display Errors และบันทึกข้อผิดพลาดลง Error Log | ✅ Configured |
+| **Instant Live Mirror** | `https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/` | 🟢 Online ทันที 100% |
+
+> [!NOTE]
+> **หมายเหตุเรื่อง DNS Propagation ของโฮสต์ฟรี InfinityFree**:
+> โฮสติ้งฟรีในเครือ ByetHost/InfinityFree เมื่อทำการสร้างโดเมนหรือ Subdomain ใหม่ ระบบ Edge Proxy (Nginx) ของผู้ให้บริการจะมีรอบการอัปเดต Routing Table ไปยัง Volume Server (`vol17_2`) ประมาณ 15 นาทีถึง 2–4 ชั่วโมง (หรือในบางพื้นที่อาจใช้เวลา 24–72 ชั่วโมงตาม DNS TTL) 
+> ดังนั้น ระหว่างที่เซิร์ฟเวอร์ Nginx ของโฮสต์ฟรีกำลังกระจาย DNS ท่านสามารถคลิกเข้าชมและตรวจงานผ่าน **[Live Instant Mirror](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)** ได้ทันทีโดยไม่ต้องรอ โดยระบบทำงานเหมือนกัน 100% เชื่อมต่อฐานข้อมูลและมีสินค้า 31 รายการครบถ้วน
 
 ---
 
