@@ -1,0 +1,11 @@
+# Sensitive configuration
+config/config.php
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.log

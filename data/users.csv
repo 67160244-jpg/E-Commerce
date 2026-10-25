@@ -1,0 +1,14 @@
+﻿id,name,email,phone,role,created_at,password_plain
+1,Store Owner,admin@mochivita.test,081-000-0001,admin,2026-08-01,Admin@1234
+2,สมชาย สายลม,customer1@example.com,086-254-7468,customer,2026-08-03,Demo@1234
+3,มานี ใจดี,customer2@example.com,089-196-6991,customer,2026-08-17,Demo@1234
+4,ปิติ วงศ์สกุล,customer3@example.com,084-138-2408,customer,2026-09-14,Demo@1234
+5,สุดา ศรีสุข,customer4@example.com,082-346-2486,customer,2026-09-02,Demo@1234
+6,กานต์ ทองดี,customer5@example.com,082-328-2013,customer,2026-09-02,Demo@1234
+7,พิมพ์ชนก แก้วมณี,customer6@example.com,084-147-3181,customer,2026-09-14,Demo@1234
+8,ธนากร ศรีเมือง,customer7@example.com,083-653-2929,customer,2026-09-18,Demo@1234
+9,วรรณา จันทร์เพ็ญ,customer8@example.com,083-205-4078,customer,2026-09-04,Demo@1234
+10,ภูมิ พัฒนา,customer9@example.com,089-829-2028,customer,2026-08-20,Demo@1234
+11,นภัส สุวรรณ,customer10@example.com,084-608-9711,customer,2026-09-25,Demo@1234
+12,อรทัย บุญมา,customer11@example.com,086-576-8424,customer,2026-09-10,Demo@1234
+13,ชยพล รุ่งเรือง,customer12@example.com,084-913-3945,customer,2026-08-03,Demo@1234
