@@ -4,17 +4,37 @@
 
 ---
 
+## 🌐 ลิงก์เข้าสู่เว็บไซต์ (Live Demo & Deployment Links)
+
+สามารถคลิกเปิดเข้าชมและทดสอบระบบได้ทันทีผ่านลิงก์สาธารณะ (Deployed Live via Cloudflare Tunnel) หรือผ่าน Localhost:
+
+* 🛍️ **เข้าสู่หน้าร้านค้าออนไลน์ (Live Storefront)**:  
+  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)**
+* 🔑 **หน้าเข้าสู่ระบบ (Login)**:  
+  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php)**
+* 📊 **ระบบหลังบ้านผู้ดูแลระบบ (Admin Dashboard)**:  
+  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/admin/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/admin/)**
+* 💻 **การเข้าใช้งานผ่าน Localhost (สำหรับรันบนเครื่อง XAMPP)**:  
+  👉 **[http://localhost/E-Commerce/public/index.php](http://localhost/E-Commerce/public/index.php)**
+
+> **จุดเด่นด้านดีไซน์ล่าสุด**:
+> - 🎨 **ธีมสีฟ้าและเขียวอ่อนละมุน**: ออกแบบให้อ่านสบายตา มี Contrast คมชัด ชัดเจน ไม่กลืนกับพื้นหลัง
+> - 🌿 **รูปภาพสินค้า 3D Realistic Vector SVG**: อัปเดตรูปสินค้าทั้ง 31 รายการให้มีมิติ แสงเงา ฉลาก และขวดบรรจุภัณฑ์เสมือนจริง
+
+---
+
 ## 📌 สารบัญ (Table of Contents)
-1. [ภาพรวมของเว็บไซต์ (Project Overview)](#ภาพรวมของเว็บไซต์-project-overview)
-2. [สถาปัตยกรรม Frontend และ Backend](#สถาปัตยกรรม-frontend-และ-backend)
-3. [ฟีเจอร์หลักทั้ง 6 ส่วน (Key Features)](#ฟีเจอร์หลักทั้ง-6-ส่วน-key-features)
-4. [โครงสร้างไดเรกทอรีและไฟล์ (Project Structure)](#โครงสร้างไดเรกทอรีและไฟล์-project-structure)
-5. [ขั้นตอนการติดตั้งและการเปิดรันหน้าเว็บ (How to Setup & Run)](#ขั้นตอนการติดตั้งและการเปิดรันหน้าเว็บ-how-to-setup--run)
-6. [บัญชีผู้ใช้งานสำหรับทดสอบระบบ (Test Accounts)](#บัญชีผู้ใช้งานสำหรับทดสอบระบบ-test-accounts)
-7. [แผนผังฐานข้อมูล (Entity-Relationship Diagram)](#แผนผังฐานข้อมูล-entity-relationship-diagram)
-8. [กลไกการทำงานเชิงลึก (Deep Dive Mechanisms)](#กลไกการทำงานเชิงลึก-deep-dive-mechanisms)
-9. [รายการทดสอบระบบ (Manual Test Checklist & Results)](#รายการทดสอบระบบ-manual-test-checklist--results)
-10. [ข้อจำกัดและสมมติฐานของระบบ (Known Limitations & Assumptions)](#ข้อจำกัดและสมมติฐานของระบบ-known-limitations--assumptions)
+1. [ลิงก์เข้าสู่เว็บไซต์ (Live Demo & Deployment Links)](#-ลิงก์เข้าสู่เว็บไซต์-live-demo--deployment-links)
+2. [ภาพรวมของเว็บไซต์ (Project Overview)](#ภาพรวมของเว็บไซต์-project-overview)
+3. [สถาปัตยกรรม Frontend และ Backend](#สถาปัตยกรรม-frontend-และ-backend)
+4. [ฟีเจอร์หลักทั้ง 6 ส่วน (Key Features)](#ฟีเจอร์หลักทั้ง-6-ส่วน-key-features)
+5. [โครงสร้างไดเรกทอรีและไฟล์ (Project Structure)](#โครงสร้างไดเรกทอรีและไฟล์-project-structure)
+6. [ขั้นตอนการติดตั้งและการเปิดรันหน้าเว็บ (How to Setup & Run)](#ขั้นตอนการติดตั้งและการเปิดรันหน้าเว็บ-how-to-setup--run)
+7. [บัญชีผู้ใช้งานสำหรับทดสอบระบบ (Test Accounts)](#บัญชีผู้ใช้งานสำหรับทดสอบระบบ-test-accounts)
+8. [แผนผังฐานข้อมูล (Entity-Relationship Diagram)](#แผนผังฐานข้อมูล-entity-relationship-diagram)
+9. [กลไกการทำงานเชิงลึก (Deep Dive Mechanisms)](#กลไกการทำงานเชิงลึก-deep-dive-mechanisms)
+10. [รายการทดสอบระบบ (Manual Test Checklist & Results)](#รายการทดสอบระบบ-manual-test-checklist--results)
+11. [ข้อจำกัดและสมมติฐานของระบบ (Known Limitations & Assumptions)](#ข้อจำกัดและสมมติฐานของระบบ-known-limitations--assumptions)
 
 ---
 
