@@ -4,18 +4,19 @@
 
 ---
 
-## 🌐 ลิงก์เข้าสู่เว็บไซต์ (Live Demo & Deployment Links)
+## 🌐 ลิงก์เข้าสู่เว็บไซต์ (Live Deployment Links)
 
-สามารถคลิกเปิดเข้าชมและทดสอบระบบได้ทันทีผ่านลิงก์สาธารณะที่มีใบรับรองความปลอดภัย SSL สมบูรณ์ (ออนไลน์ตลอดเวลา เข้าได้จากทุกอุปกรณ์ทั้งคอมพิวเตอร์และโทรศัพท์มือถือ):
-
-* 🛍️ **เข้าสู่หน้าร้านค้าออนไลน์ (Live Storefront — ใช้งานได้ทันที)**:  
-  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)**
+* 🛍️ **เว็บไซต์หลักบน InfinityFree (Production Domain)**:  
+  👉 **[https://mochivita.infinityfreeapp.com/public/](https://mochivita.infinityfreeapp.com/public/)**  
+  *(หรือเข้าผ่านโหมด HTTP: `http://mochivita.infinityfreeapp.com/public/` หากเพิ่งสร้างเสร็จและกำลังรอออกใบรับรอง SSL)*
 * 🔑 **หน้าเข้าสู่ระบบ (Login)**:  
-  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/login.php)**
+  👉 **[https://mochivita.infinityfreeapp.com/public/login.php](https://mochivita.infinityfreeapp.com/public/login.php)**
 * 📊 **ระบบหลังบ้านผู้ดูแลระบบ (Admin Dashboard)**:  
-  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/admin/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/admin/)**
+  👉 **[https://mochivita.infinityfreeapp.com/admin/](https://mochivita.infinityfreeapp.com/admin/)**
 * 🩺 **หน้าตรวจสอบสถานะระบบ (Health Check)**:  
-  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/health.php](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/health.php)**
+  👉 **[https://mochivita.infinityfreeapp.com/public/health.php](https://mochivita.infinityfreeapp.com/public/health.php)**
+* ⚡ **ลิงก์สำรองพร้อมใช้งานทันที (Live Backup Mirror via Cloudflare Tunnel)**:  
+  👉 **[https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/](https://pace-adjusted-improvements-supplemental.trycloudflare.com/E-Commerce/public/)**
 * 💻 **การเข้าใช้งานผ่าน Localhost (สำหรับทดสอบใน XAMPP)**:  
   👉 **[http://localhost/E-Commerce/public/index.php](http://localhost/E-Commerce/public/index.php)**
 
@@ -26,19 +27,127 @@
 
 ---
 
+## 📖 คู่มือการสมัครบัญชี InfinityFree และเปิดใช้งานโดเมน mochivita.infinityfreeapp.com (ทีละขั้นตอนอย่างละเอียด)
+
+เพื่อให้โดเมน `https://mochivita.infinityfreeapp.com/public/` ออนไลน์และเปิดเข้าชมได้จริง โดยไม่ติดหน้าเตือนสีแดง (NET::ERR_CERT_AUTHORITY_INVALID) สามารถทำตาม 8 ขั้นตอนนี้ได้ทันที (ใช้เวลาประมาณ 3–5 นาที ฟรี 100%):
+
+### 1. สมัครสมาชิก InfinityFree
+1. เปิดเบราว์เซอร์ไปที่: **[https://www.infinityfree.com/register](https://www.infinityfree.com/register)**
+2. กรอก **Email Address** ของคุณ และตั้ง **Password** (ยืนยันรหัสผ่านอีกครั้ง)
+3. ติ๊กเครื่องหมายถูกยอมรับข้อตกลง แล้วกดปุ่มสีฟ้า **"Sign Up"**
+4. เปิดกล่องข้อความในอีเมลของคุณ แล้วคลิกปุ่ม **"Verify Email Address"** เพื่อยืนยันตัวตน
+
+### 2. สร้าง Hosting Account และเลือก Subdomain mochivita
+1. เข้าสู่แดชบอร์ด InfinityFree แล้วคลิกปุ่มสีเขียว **"+ Create Account"**
+2. ในหัวข้อ **Domain Type** ให้เลือก: **Subdomain**
+3. ในช่องพิมพ์ชื่อ Subdomain: กรอกคำว่า `mochivita`
+4. ในช่องเลือก Domain Extension ด้านขวา: เลือก **`.infinityfreeapp.com`**  
+   *(หมายเหตุ: หากชื่อ `mochivita` มีผู้ใช้ไปแล้ว สามารถใช้ชื่อสำรอง เช่น `mochivita-shop` หรือ `mochivita-vita` ได้)*
+5. คลิกปุ่ม **"Check Availability"**
+6. เมื่อขึ้นข้อความสีเขียวว่าชื่อว่างอยู่ ให้เลื่อนลงมากดปุ่ม **"Create Account"**
+7. ระบบจะแสดงหน้า **Account Details** ให้จดบันทึกค่า 3 อย่างนี้ไว้:
+   - **FTP Hostname**: `ftpupload.net`
+   - **FTP Username**: (เช่น `if0_12345678`)
+   - **FTP Password**: (คลิกปุ่ม Show เพื่อดูรหัสผ่าน)
+
+### 3. เปิดใช้งาน SSL ฟรี (แก้ปัญหาข้อความเตือนความปลอดภัยสีแดง)
+เมื่อสร้างโดเมนใหม่บนโฮสต์ฟรี เบราว์เซอร์จะขึ้นเตือนว่าการเชื่อมต่อไม่เป็นส่วนตัว เพราะยังไม่ได้ติดตั้งใบรับรองความปลอดภัย:
+1. **การเข้าใช้งานได้ทันที**: ในหน้าเตือนสีแดง ให้คลิกปุ่ม **"ขั้นสูง (Advanced)"** ด้านล่างซ้าย > แล้วคลิก **"ไปยัง mochivita.infinityfreeapp.com (ไม่ปลอดภัย)"**
+2. **การติดตั้งใบรับรองความปลอดภัยถาวร (ได้กุญแจเขียวปลอดภัย)**:
+   - ในหน้าหลักของ InfinityFree คลิกเมนู **"Free SSL Certificates"**
+   - คลิกปุ่ม **"New SSL Certificate"** > เลือกชื่อโดเมน `mochivita.infinityfreeapp.com`
+   - เลือกผู้ให้บริการฟรี (แนะนำ **Google Trust Services** หรือ **Let's Encrypt**) แล้วกดปุ่ม Create Order
+   - กดปุ่ม **"Setup CNAME Records Automatically"**
+   - รอระบบอัปเดต DNS ประมาณ 5–10 นาที เมื่อสถานะเปลี่ยนเป็น **Issued** ให้กดปุ่ม **"Install SSL Certificate Automatically"** โดเมนของคุณจะมีกุญแจเขียวปลอดภัย 100%!
+
+### 4. สร้างฐานข้อมูล MySQL บนโฮสต์
+1. ในหน้าจัดการ Account บน InfinityFree คลิกปุ่ม **"Control Panel"** (หรือ vPanel)
+2. ในหมวด Databases ให้คลิกเมนู **"MySQL Databases"**
+3. ในช่อง **Create New Database** พิมพ์ชื่อ: `mochi_vita` แล้วคลิก **"Create Database"**
+4. จดบันทึกค่า 4 อย่าง:
+   - **MySQL Host**: (เช่น `sql123.infinityfree.com` ห้ามใช้ 127.0.0.1)
+   - **Database Name**: (เช่น `if0_12345678_mochi_vita`)
+   - **MySQL Username**: (เช่น `if0_12345678`)
+   - **MySQL Password**: (รหัสผ่านเดียวกับ FTP Password ในข้อ 2)
+
+### 5. นำเข้าฐานข้อมูลผ่าน phpMyAdmin
+1. ในหน้า Control Panel คลิกปุ่ม **"phpMyAdmin"** ข้างชื่อฐานข้อมูลที่เพิ่งสร้าง
+2. คลิกแท็บ **"Import"** ด้านบน
+3. คลิก Choose File เลือกไฟล์ `database/production_schema.sql` จากในโฟลเดอร์โปรเจกต์ แล้วกดปุ่ม **Import** ด้านล่าง
+4. รันคำสั่งใน Terminal เครื่องของคุณเพื่อสร้าง Seed พร้อมรหัสผ่านแอดมิน:
+   ```bash
+   php tools/make_production_seed.php
+   ```
+5. คลิกแท็บ **"Import"** ใน phpMyAdmin อีกครั้ง เลือกไฟล์ `database/production_seed.local.sql` แล้วกด **Import** (ข้อมูลหมวดหมู่ สินค้า 31 รายการ และออเดอร์ตัวอย่างจะถูกนำเข้าครบถ้วน)
+
+### 6. อัปโหลดโค้ดขึ้นโฮสต์ (เลือก 1 วิธีที่สะดวกที่สุด)
+* **วิธีที่ 6.1 (ใช้คำสั่ง CLI อัตโนมัติ — ง่ายและเร็วที่สุด)**:
+  เปิด PowerShell หรือ Terminal ในเครื่องของคุณ แล้วพิมพ์คำสั่งนี้:
+  ```bash
+  cd C:\xampp\htdocs\E-Commerce
+  C:\xampp\php\php.exe tools/deploy_ftp.php
+  ```
+  กรอก FTP Username และ FTP Password จากขั้นตอนที่ 2 สคริปต์จะทำการอัปโหลดไฟล์เว็บทั้งหมดขึ้นโฮสต์ให้อัตโนมัติใน 1 นาที
+* **วิธีที่ 6.2 (ใช้ GitHub Actions CI/CD อัตโนมัติ)**:
+  ไปที่ GitHub Repo: **Settings** > **Secrets and variables** > **Actions** แล้วเพิ่ม `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` ทุกครั้งที่กด Push ระบบจะส่งโค้ดขึ้นโฮสต์อัตโนมัติ
+* **วิธีที่ 6.3 (ใช้ FileZilla Client)**:
+  เชื่อมต่อ Host: `ftpupload.net`, Username, Password แล้วลากไฟล์ทั้งหมดเข้าไปไว้ในโฟลเดอร์ `/htdocs/`
+
+### 7. สร้างไฟล์ config/config.php บนโฮสต์
+1. ใน Control Panel ของ InfinityFree คลิกเปิด **"Online File Manager"**
+2. ดับเบิลคลิกเข้าไปที่โฟลเดอร์ `htdocs` แล้วเข้าไปที่โฟลเดอร์ `config`
+3. คลิกปุ่ม **"New File"** ด้านบน ตั้งชื่อไฟล์ว่า `config.php`
+4. วางโค้ดด้านล่างนี้ โดยเปลี่ยนค่า Host, Database, User, Password เป็นค่าจริงจากขั้นตอนที่ 4:
+   ```php
+   <?php
+   defined('APP_ROOT') or define('APP_ROOT', dirname(__DIR__));
+
+   define('APP_ENV', 'production');
+   define('DB_HOST', 'sql123.infinityfree.com'); // ค่า MySQL Host ของคุณ
+   define('DB_PORT', '3306');
+   define('DB_NAME', 'if0_12345678_mochi_vita'); // ค่า Database Name ของคุณ
+   define('DB_USER', 'if0_12345678');            // ค่า Username ของคุณ
+   define('DB_PASS', 'YourAccountPassword');     // รหัสผ่านของคุณ
+   define('DB_CHARSET', 'utf8mb4');
+
+   define('BASE_URL', ''); // ติดตั้งที่ root htdocs ให้เป็นสตริงว่าง
+
+   define('STORE_NAME', 'Mochi Vita');
+   define('STORE_TAGLINE', 'ร้านวิตามินและอาหารเสริมออนไลน์เพื่อสุขภาพที่ดีของคุณ');
+   define('CURRENCY_SYMBOL', '฿');
+   define('FREE_SHIPPING_THRESHOLD', 999.00);
+   define('DEFAULT_SHIPPING_FEE', 50.00);
+
+   if (defined('APP_ENV') && APP_ENV === 'production') {
+       error_reporting(E_ALL);
+       ini_set('display_errors', '0');
+       ini_set('log_errors', '1');
+       $storageDir = APP_ROOT . '/storage';
+       if (!is_dir($storageDir)) { @mkdir($storageDir, 0755, true); }
+       ini_set('error_log', $storageDir . '/error.log');
+   }
+
+   date_default_timezone_set('Asia/Bangkok');
+   ```
+5. กดปุ่มบันทึก (**Save & Close**)
+6. เปิดเบราว์เซอร์เข้าไปที่: **`https://mochivita.infinityfreeapp.com/public/`** เว็บไซต์จะเปิดทำงานได้สมบูรณ์แบบตลอด 24 ชั่วโมง โดยไม่ต้องเปิดคอมพิวเตอร์ทิ้งไว้!
+
+---
+
 ## 📌 สารบัญ (Table of Contents)
-1. [ลิงก์เข้าสู่เว็บไซต์ (Live Demo & Deployment Links)](#-ลิงก์เข้าสู่เว็บไซต์-live-demo--deployment-links)
-2. [สถาปัตยกรรมการ Deploy และภาพรวมระบบ (Deployment Architecture)](#-สถาปัตยกรรมการ-deploy-และภาพรวมระบบ-deployment-architecture)
-3. [ขั้นตอนการ Deploy ขึ้นโฮสต์จริง (Production Deployment Guide)](#-ขั้นตอนการ-deploy-ขึ้นโฮสต์จริง-production-deployment-guide)
-4. [ภาพตัวอย่างหน้าจอระบบ (System Screenshots)](#-ภาพตัวอย่างหน้าจอระบบ-system-screenshots)
-5. [ฟีเจอร์หลักทั้ง 6 ส่วน (Key Features)](#-ฟีเจอร์หลักทั้ง-6-ส่วน-key-features)
-6. [โครงสร้างไดเรกทอรีและไฟล์ (Project Structure)](#-โครงสร้างไดเรกทอรีและไฟล์-project-structure)
-7. [ขั้นตอนการติดตั้งสำหรับเครื่อง Localhost (XAMPP Setup)](#-ขั้นตอนการติดตั้งสำหรับเครื่อง-localhost-xampp-setup)
-8. [บัญชีผู้ใช้งานสำหรับทดสอบระบบ (Test Accounts)](#-บัญชีผู้ใช้งานสำหรับทดสอบระบบ-test-accounts)
-9. [แผนผังฐานข้อมูล (Entity-Relationship Diagram)](#-แผนผังฐานข้อมูล-entity-relationship-diagram)
-10. [กลไกความปลอดภัยและการทำงานเชิงลึก (Security & Deep Dive Mechanisms)](#-กลไกความปลอดภัยและการทำงานเชิงลึก-security--deep-dive-mechanisms)
-11. [บันทึกการตรวจรับงานและผลการทดสอบระบบ (Verification & Test Checklist)](#-บันทึกการตรวจรับงานและผลการทดสอบระบบ-verification--test-checklist)
-12. [ข้อจำกัดและข้อแนะนำสำหรับโฮสต์ฟรี (Known Limitations & Hosting Notes)](#-ข้อจำกัดและข้อแนะนำสำหรับโฮสต์ฟรี-known-limitations--hosting-notes)
+1. [ลิงก์เข้าสู่เว็บไซต์ (Live Deployment Links)](#-ลิงก์เข้าสู่เว็บไซต์-live-deployment-links)
+2. [คู่มือการสมัครบัญชี InfinityFree และเปิดใช้งานโดเมน (InfinityFree Setup Guide)](#-คู่มือการสมัครบัญชี-infinityfree-และเปิดใช้งานโดเมน-mochivitainfinityfreeappcom-ทีละขั้นตอนอย่างละเอียด)
+3. [สถาปัตยกรรมการ Deploy และภาพรวมระบบ (Deployment Architecture)](#-สถาปัตยกรรมการ-deploy-และภาพรวมระบบ-deployment-architecture)
+4. [ขั้นตอนการ Deploy ขึ้นโฮสต์จริง (Production Deployment Guide)](#-ขั้นตอนการ-deploy-ขึ้นโฮสต์จริง-production-deployment-guide)
+5. [ภาพตัวอย่างหน้าจอระบบ (System Screenshots)](#-ภาพตัวอย่างหน้าจอระบบ-system-screenshots)
+6. [ฟีเจอร์หลักทั้ง 6 ส่วน (Key Features)](#-ฟีเจอร์หลักทั้ง-6-ส่วน-key-features)
+7. [โครงสร้างไดเรกทอรีและไฟล์ (Project Structure)](#-โครงสร้างไดเรกทอรีและไฟล์-project-structure)
+8. [ขั้นตอนการติดตั้งสำหรับเครื่อง Localhost (XAMPP Setup)](#-ขั้นตอนการติดตั้งสำหรับเครื่อง-localhost-xampp-setup)
+9. [บัญชีผู้ใช้งานสำหรับทดสอบระบบ (Test Accounts)](#-บัญชีผู้ใช้งานสำหรับทดสอบระบบ-test-accounts)
+10. [แผนผังฐานข้อมูล (Entity-Relationship Diagram)](#-แผนผังฐานข้อมูล-entity-relationship-diagram)
+11. [กลไกความปลอดภัยและการทำงานเชิงลึก (Security & Deep Dive Mechanisms)](#-กลไกความปลอดภัยและการทำงานเชิงลึก-security--deep-dive-mechanisms)
+12. [บันทึกการตรวจรับงานและผลการทดสอบระบบ (Verification & Test Checklist)](#-บันทึกการตรวจรับงานและผลการทดสอบระบบ-verification--test-checklist)
+13. [ข้อจำกัดและข้อแนะนำสำหรับโฮสต์ฟรี (Known Limitations & Hosting Notes)](#-ข้อจำกัดและข้อแนะนำสำหรับโฮสต์ฟรี-known-limitations--hosting-notes)
 
 ---
 
