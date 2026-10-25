@@ -1,6 +1,13 @@
 # Sensitive configuration
 config/config.php
 
+# Local production seed (contains real hashes, do NOT commit)
+database/production_seed.local.sql
+
+# Production logs and private storage
+storage/
+*.log
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -8,4 +15,3 @@ desktop.ini
 
 # Temporary files
 *.tmp
-*.log

@@ -6,6 +6,9 @@ require_once APP_ROOT . '/includes/csrf.php';
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/auth.php';
 
+// ป้องกันสิทธิ์แอดมินเป็นบรรทัดแรก
+require_admin();
+
 $pdo = get_db_connection();
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -73,33 +76,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // การอัปโหลดรูปภาพสินค้า
-        $imagePath = $product['image'] ?? '/assets/products/placeholder.jpg';
+        // การอัปโหลดรูปภาพสินค้าอย่างปลอดภัยสูงสุด (MIME Check, getimagesize, random_bytes)
+        $imagePath = $product['image'] ?? '/assets/products/placeholder.svg';
         if (empty($error) && !empty($_FILES['image']['name'])) {
             $file = $_FILES['image'];
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
             $fileExt = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             $maxSize = 2 * 1024 * 1024; // 2MB
 
             if (!in_array($fileExt, $allowedExtensions, true)) {
-                $error = 'ไฟล์รูปภาพต้องเป็นนามสกุล jpg, jpeg, png หรือ webp เท่านั้น';
+                $error = 'ไฟล์รูปภาพต้องเป็นนามสกุล jpg, jpeg, png หรือ webp เท่านั้น (ไม่อนุญาต svg หรือ gif สำหรับการอัปโหลด)';
             } elseif ($file['size'] > $maxSize) {
                 $error = 'ขนาดไฟล์รูปภาพต้องไม่เกิน 2MB';
             } elseif ($file['error'] !== UPLOAD_ERR_OK) {
-                $error = 'เกิดข้อผิดพลาดในการอัปโหลดไฟล์';
+                $error = 'เกิดข้อผิดพลาดในการอัปโหลดไฟล์ (Error Code: ' . $file['error'] . ')';
             } else {
-                // สร้างชื่อไฟล์ใหม่ที่ปลอดภัย
-                $fileName = $slug . '-' . time() . '.' . $fileExt;
-                $targetDir = APP_ROOT . '/assets/products/';
-                if (!is_dir($targetDir)) {
-                    mkdir($targetDir, 0755, true);
-                }
-                $targetFile = $targetDir . $fileName;
+                // ตรวจสอบ MIME type จริงด้วย finfo
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mimeType = finfo_file($finfo, $file['tmp_name']);
+                finfo_close($finfo);
 
-                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                    $imagePath = '/assets/products/' . $fileName;
+                // ตรวจสอบโครงสร้างรูปภาพด้วย getimagesize
+                $imageInfo = @getimagesize($file['tmp_name']);
+
+                if (!in_array($mimeType, $allowedMimes, true) || $imageInfo === false) {
+                    $error = 'ไฟล์ที่อัปโหลดไม่ใช่รูปภาพที่ถูกต้องหรือเนื้อหาไม่ตรงกับนามสกุลไฟล์';
                 } else {
-                    $error = 'ไม่สามารถบันทึกไฟล์รูปภาพไปยังโฟลเดอร์ assets/products/ ได้';
+                    // สร้างชื่อไฟล์สุ่มด้วย random_bytes (ห้ามใช้ชื่อจากผู้ใช้)
+                    $safeExt = ($fileExt === 'jpeg') ? 'jpg' : $fileExt;
+                    $randomFileName = bin2hex(random_bytes(16)) . '.' . $safeExt;
+
+                    $targetDir = APP_ROOT . '/assets/uploads/';
+                    if (!is_dir($targetDir)) {
+                        mkdir($targetDir, 0755, true);
+                    }
+                    $targetFile = $targetDir . $randomFileName;
+
+                    if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                        $imagePath = '/assets/uploads/' . $randomFileName;
+                    } else {
+                        $error = 'ไม่สามารถบันทึกไฟล์รูปภาพไปยังโฟลเดอร์ assets/uploads/ ได้';
+                    }
                 }
             }
         }

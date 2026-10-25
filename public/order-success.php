@@ -54,6 +54,15 @@ require_once APP_ROOT . '/includes/header.php';
             </div>
 
             <div class="card-body p-4 p-md-5">
+                <!-- แถบแจ้งเตือนระบบจำลองเพื่อการศึกษา -->
+                <div class="alert alert-warning border-0 shadow-sm rounded-4 mb-4 d-flex align-items-center" role="alert">
+                    <i class="bi bi-shield-exclamation fs-3 text-warning me-3"></i>
+                    <div>
+                        <strong class="d-block text-dark">ระบบจำลองเพื่อการศึกษา (Simulation Only)</strong>
+                        <span class="text-secondary small">ไม่มีการตัดเงินจริง ห้ามกรอกข้อมูลบัตรหรือข้อมูลส่วนตัวจริง</span>
+                    </div>
+                </div>
+
                 <!-- Payment simulation box -->
                 <?php if ($order['payment_method'] === 'promptpay'): ?>
                     <div class="card border-primary border-opacity-25 bg-primary bg-opacity-10 p-4 rounded-4 mb-4 text-center">

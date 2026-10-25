@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS mochi_vita CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE mochi_vita;
 SET NAMES utf8mb4;
-DROP TABLE IF EXISTS stock_log, order_items, orders, addresses, products, categories, users;
+DROP TABLE IF EXISTS login_attempts, stock_log, order_items, orders, addresses, products, categories, users;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,4 +84,12 @@ CREATE TABLE stock_log (
   reason VARCHAR(80),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+CREATE TABLE login_attempts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(160) NOT NULL,
+  ip VARCHAR(45) NOT NULL,
+  attempted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  success TINYINT(1) DEFAULT 0,
+  INDEX idx_attempt (email, ip, attempted_at)
 );

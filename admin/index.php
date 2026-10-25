@@ -5,6 +5,9 @@ require_once APP_ROOT . '/includes/db.php';
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/auth.php';
 
+// ป้องกันสิทธิ์แอดมินเป็นบรรทัดแรก
+require_admin();
+
 $pdo = get_db_connection();
 
 // 1. KPI Cards Queries

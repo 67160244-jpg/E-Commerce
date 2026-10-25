@@ -1,4 +1,10 @@
 <?php
+// บังคับให้รันผ่าน PHP CLI เท่านั้น เพื่อความปลอดภัย ป้องกันการเรียกผ่านเว็บ
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    die("Forbidden: สคริปต์นี้สามารถทำงานผ่าน PHP CLI เท่านั้น");
+}
+
 require_once __DIR__ . '/../config/config.php';
 
 try {

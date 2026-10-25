@@ -4,9 +4,8 @@
  * ฟังก์ชันช่วยเหลือส่วนกลาง จัดรูปแบบตัวเลข ข้อความ และระบบ Flash Message
  */
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+defined('APP_ROOT') or define('APP_ROOT', dirname(__DIR__));
+require_once APP_ROOT . '/includes/session.php';
 
 /**
  * ป้องกัน XSS ด้วย htmlspecialchars
@@ -160,6 +159,11 @@ function get_product_image_url(?string $imagePath): string {
         $fullPath = defined('APP_ROOT') ? APP_ROOT . '/' . $cleanPath : '';
         if (!empty($fullPath) && file_exists($fullPath)) {
             return url($cleanPath);
+        }
+
+        // ตรวจสอบใน assets/uploads/ โดยตรง
+        if (defined('APP_ROOT') && file_exists(APP_ROOT . '/assets/uploads/' . basename($cleanPath))) {
+            return url('assets/uploads/' . basename($cleanPath));
         }
 
         // ลองสลับนามสกุล .jpg <-> .svg

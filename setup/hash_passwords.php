@@ -2,8 +2,13 @@
 /**
  * Mochi Vita - Password Hasher Script
  * สคริปต์สำหรับ Hash รหัสผ่านผู้ใช้เริ่มต้นจากไฟล์ data/users.csv
- * รันเพียงครั้งเดียวหลังการ Import database/seed.sql
+ * รันเพียงครั้งเดียวหลังการ Import database/seed.sql (ผ่าน CLI เท่านั้น)
  */
+
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    die("Forbidden: สคริปต์นี้สามารถทำงานผ่าน PHP CLI เท่านั้น เพื่อความปลอดภัยของฐานข้อมูล");
+}
 
 define('APP_ROOT', dirname(__DIR__));
 

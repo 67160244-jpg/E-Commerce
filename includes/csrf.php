@@ -4,9 +4,8 @@
  * ระบบป้องกันการโจมตีแบบ Cross-Site Request Forgery (CSRF)
  */
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+defined('APP_ROOT') or define('APP_ROOT', dirname(__DIR__));
+require_once APP_ROOT . '/includes/session.php';
 
 /**
  * สร้างหรือส่งคืน CSRF Token ประจำ Session

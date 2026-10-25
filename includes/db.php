@@ -33,8 +33,14 @@ function get_db_connection(): PDO {
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            // ในโหมด Development แสดง Error ชัดเจน เพื่อความสะดวกของนักศึกษา
-            die("เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล: " . htmlspecialchars($e->getMessage()));
+            if (defined('APP_ENV') && APP_ENV === 'production') {
+                error_log('Database Connection Error: ' . $e->getMessage());
+                http_response_code(500);
+                die("ระบบไม่สามารถเชื่อมต่อฐานข้อมูลได้ในขณะนี้ กรุณาลองใหม่อีกครั้งในภายหลัง");
+            } else {
+                // ในโหมด Development แสดง Error ชัดเจน เพื่อความสะดวกในการพัฒนา
+                die("เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล: " . htmlspecialchars($e->getMessage()));
+            }
         }
     }
 

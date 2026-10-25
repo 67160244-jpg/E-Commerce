@@ -2,8 +2,12 @@
 define('APP_ROOT', dirname(__DIR__));
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/includes/db.php';
+require_once APP_ROOT . '/includes/csrf.php';
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/auth.php';
+
+// ป้องกันสิทธิ์แอดมินเป็นบรรทัดแรก
+require_admin();
 
 $pdo = get_db_connection();
 
@@ -193,16 +197,20 @@ require_once APP_ROOT . '/includes/admin-header.php';
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <div class="btn-group btn-group-sm">
-                                    <a href="<?= url('admin/stock-adjust.php?id=' . $p['id']) ?>" class="btn btn-outline-dark" title="ปรับสต็อกด่วน">
+                                <div class="d-inline-flex gap-1 align-items-center">
+                                    <a href="<?= url('admin/stock-adjust.php?id=' . $p['id']) ?>" class="btn btn-outline-dark btn-sm" title="ปรับสต็อกด่วน">
                                         <i class="bi bi-plus-slash-minus"></i>
                                     </a>
-                                    <a href="<?= url('admin/product-form.php?id=' . $p['id']) ?>" class="btn btn-outline-primary" title="แก้ไข">
+                                    <a href="<?= url('admin/product-form.php?id=' . $p['id']) ?>" class="btn btn-outline-primary btn-sm" title="แก้ไข">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="<?= url('admin/product-delete.php?id=' . $p['id']) ?>" class="btn btn-outline-danger" title="ลบหรือปิดการขาย" onclick="return confirm('ยืนยันดำเนินการกับสินค้านี้? (หากเคยมีประวัติการสั่งซื้อ ระบบจะปิดการขายแทน)');">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
+                                    <form method="POST" action="<?= url('admin/product-delete.php') ?>" class="d-inline" onsubmit="return confirm('ยืนยันดำเนินการกับสินค้านี้? (หากเคยมีประวัติการสั่งซื้อ ระบบจะปิดการขายแทน)');">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="id" value="<?= $p['id'] ?>">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="ลบหรือปิดการขาย">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

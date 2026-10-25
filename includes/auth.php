@@ -4,11 +4,8 @@
  * การจัดการ Session สิทธิ์ผู้ใช้งาน และการล็อกอิน/ออกจากระบบ
  */
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 defined('APP_ROOT') or define('APP_ROOT', dirname(__DIR__));
+require_once APP_ROOT . '/includes/session.php';
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/includes/db.php';
 require_once APP_ROOT . '/includes/helpers.php';

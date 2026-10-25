@@ -156,31 +156,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            // 2. สร้างเลขออเดอร์ MV-yymmdd-0001
+            // 2. สร้างเลขออเดอร์ MV-yymmdd-NNNN โดยอ่านลำดับสูงสุดของวันนั้นภายใน transaction เดียวกัน และ retry เมื่อชน UNIQUE
             $datePrefix = date('ymd');
             $likePattern = "MV-{$datePrefix}-%";
-            $cntStmt = $pdo->prepare("SELECT COUNT(*) FROM orders WHERE order_no LIKE :pattern");
-            $cntStmt->execute([':pattern' => $likePattern]);
-            $todayOrderCount = (int)$cntStmt->fetchColumn();
-            $orderNo = sprintf("MV-%s-%04d", $datePrefix, $todayOrderCount + 1);
 
-            // 3. สร้างรายการ orders (สถานะเริ่มต้นเป็น pending เสมอ)
+            $maxOrderStmt = $pdo->prepare("SELECT MAX(order_no) FROM orders WHERE order_no LIKE :pattern FOR UPDATE");
+            $maxOrderStmt->execute([':pattern' => $likePattern]);
+            $maxOrderNo = $maxOrderStmt->fetchColumn();
+
+            $nextSeq = 1;
+            if (!empty($maxOrderNo)) {
+                $parts = explode('-', $maxOrderNo);
+                $lastSeq = (int)end($parts);
+                $nextSeq = $lastSeq + 1;
+            }
+
+            // 3. สร้างรายการ orders (สถานะเริ่มต้นเป็น pending เสมอ) พร้อม retry เมื่อเกิดชน unique
             $orderInsert = $pdo->prepare("
                 INSERT INTO orders (order_no, user_id, status, payment_method, subtotal, shipping_fee, total, ship_name, ship_phone, ship_address, created_at)
                 VALUES (:order_no, :user_id, 'pending', :payment_method, :subtotal, :shipping_fee, :total, :ship_name, :ship_phone, :ship_address, NOW())
             ");
-            $orderInsert->execute([
-                ':order_no'       => $orderNo,
-                ':user_id'        => $user['id'],
-                ':payment_method' => $paymentMethod,
-                ':subtotal'       => $subtotal,
-                ':shipping_fee'   => $shippingFee,
-                ':total'          => $grandTotal,
-                ':ship_name'      => $shipName,
-                ':ship_phone'     => $shipPhone,
-                ':ship_address'   => $shipAddress
-            ]);
-            $orderId = (int)$pdo->lastInsertId();
+
+            $orderInserted = false;
+            $retryCount = 0;
+            $orderId = 0;
+            $finalOrderNo = '';
+
+            while (!$orderInserted && $retryCount < 5) {
+                $candidateOrderNo = sprintf("MV-%s-%04d", $datePrefix, $nextSeq);
+                try {
+                    $orderInsert->execute([
+                        ':order_no'       => $candidateOrderNo,
+                        ':user_id'        => $user['id'],
+                        ':payment_method' => $paymentMethod,
+                        ':subtotal'       => $subtotal,
+                        ':shipping_fee'   => $shippingFee,
+                        ':total'          => $grandTotal,
+                        ':ship_name'      => $shipName,
+                        ':ship_phone'     => $shipPhone,
+                        ':ship_address'   => $shipAddress
+                    ]);
+                    $orderId = (int)$pdo->lastInsertId();
+                    $finalOrderNo = $candidateOrderNo;
+                    $orderInserted = true;
+                } catch (PDOException $pe) {
+                    if ($pe->getCode() == 23000 || strpos($pe->getMessage(), 'Duplicate entry') !== false) {
+                        $nextSeq++;
+                        $retryCount++;
+                    } else {
+                        throw $pe;
+                    }
+                }
+            }
+
+            if (!$orderInserted) {
+                throw new Exception("ไม่สามารถสร้างรหัสคำสั่งซื้อได้ กรุณาลองใหม่อีกครั้ง");
+            }
 
             // 4. บันทึก order_items, ตัดสต็อกสินค้า และบันทึก stock_log
             $itemInsert = $pdo->prepare("
@@ -232,7 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             unset($_SESSION['cart']);
 
             set_flash('success', 'บันทึกคำสั่งซื้อเรียบร้อยแล้ว');
-            redirect('public/order-success.php?order_no=' . urlencode($orderNo));
+            redirect('public/order-success.php?order_no=' . urlencode($finalOrderNo));
 
         } catch (Exception $e) {
             $pdo->rollBack();
@@ -249,6 +280,15 @@ require_once APP_ROOT . '/includes/header.php';
     <div class="mb-4">
         <h3 class="fw-bold text-dark"><i class="bi bi-credit-card-2-front text-success me-2"></i> สั่งซื้อและชำระเงิน</h3>
         <p class="text-muted small">กรุณาตรวจสอบที่อยู่จัดส่งและเลือกวิธีการชำระเงิน</p>
+    </div>
+
+    <!-- แถบแจ้งเตือนความปลอดภัยระบบจำลอง -->
+    <div class="alert alert-warning border-0 shadow-sm rounded-4 mb-4 d-flex align-items-center" role="alert">
+        <i class="bi bi-shield-exclamation fs-3 text-warning me-3"></i>
+        <div>
+            <strong class="d-block text-dark">ระบบจำลองเพื่อการศึกษา (Simulation Only)</strong>
+            <span class="text-secondary small">ไม่มีการตัดเงินจริง ห้ามกรอกข้อมูลบัตรหรือข้อมูลส่วนตัวจริง</span>
+        </div>
     </div>
 
     <?php if (!empty($error)): ?>

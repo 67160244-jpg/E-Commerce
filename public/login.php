@@ -24,31 +24,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
+    // อ่าน IP จริงของผู้ใช้ (รองรับ Cloudflare / Reverse Proxy)
+    $clientIp = $_SERVER['HTTP_CF_CONNECTING_IP'] 
+        ?? $_SERVER['HTTP_X_FORWARDED_FOR'] 
+        ?? $_SERVER['REMOTE_ADDR'] 
+        ?? '0.0.0.0';
+    if (strpos($clientIp, ',') !== false) {
+        $clientIp = trim(explode(',', $clientIp)[0]);
+    }
+
     if (empty($email) || empty($password)) {
         $error = 'กรุณากรอกอีเมลและรหัสผ่านให้ครบถ้วน';
     } else {
         $pdo = get_db_connection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
-        $stmt->execute([':email' => $email]);
-        $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            login_user($user);
-            set_flash('success', 'ยินดีต้อนรับคุณ ' . e($user['name']) . ' เข้าสู่ระบบเรียบร้อยแล้ว');
+        // ตรวจสอบ Rate Limiting: ผิดเกิน 5 ครั้งใน 10 นาทีหรือไม่ (ตาม email + IP)
+        $chkAttempt = $pdo->prepare("
+            SELECT COUNT(*) 
+            FROM login_attempts 
+            WHERE (email = :email OR ip = :ip) 
+              AND success = 0 
+              AND attempted_at >= DATE_SUB(NOW(), INTERVAL 10 MINUTE)
+        ");
+        $chkAttempt->execute([':email' => $email, ':ip' => $clientIp]);
+        $failedCount = (int)$chkAttempt->fetchColumn();
 
-            // ตรวจสอบหน้าที่ต้องการไปต่อ
-            $redirectUrl = $_SESSION['redirect_after_login'] ?? null;
-            unset($_SESSION['redirect_after_login']);
-
-            if ($redirectUrl) {
-                redirect($redirectUrl);
-            } elseif ($user['role'] === 'admin') {
-                redirect('admin/index.php');
-            } else {
-                redirect('public/index.php');
-            }
+        if ($failedCount >= 5) {
+            $error = 'มีการพยายามเข้าสู่ระบบไม่ถูกต้องเกินกำหนด (5 ครั้ง) เพื่อความปลอดภัย กรุณารอประมาณ 10 นาทีแล้วจึงลองใหม่อีกครั้ง';
         } else {
-            $error = 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง';
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+            $stmt->execute([':email' => $email]);
+            $user = $stmt->fetch();
+
+            if ($user && password_verify($password, $user['password_hash'])) {
+                // บันทึกความพยายามสำเร็จ
+                $pdo->prepare("INSERT INTO login_attempts (email, ip, attempted_at, success) VALUES (:email, :ip, NOW(), 1)")
+                    ->execute([':email' => $email, ':ip' => $clientIp]);
+
+                login_user($user);
+                set_flash('success', 'ยินดีต้อนรับคุณ ' . e($user['name']) . ' เข้าสู่ระบบเรียบร้อยแล้ว');
+
+                // ตรวจสอบหน้าที่ต้องการไปต่อ
+                $redirectUrl = $_SESSION['redirect_after_login'] ?? null;
+                unset($_SESSION['redirect_after_login']);
+
+                if ($redirectUrl) {
+                    redirect($redirectUrl);
+                } elseif ($user['role'] === 'admin') {
+                    redirect('admin/index.php');
+                } else {
+                    redirect('public/index.php');
+                }
+            } else {
+                // บันทึกความพยายามไม่สำเร็จ
+                $pdo->prepare("INSERT INTO login_attempts (email, ip, attempted_at, success) VALUES (:email, :ip, NOW(), 0)")
+                    ->execute([':email' => $email, ':ip' => $clientIp]);
+
+                // ข้อความ error เดียวกันทั้งกรณีอีเมลผิดและรหัสผิด ไม่เปิดเผยว่าอีเมลมีอยู่จริงหรือไม่
+                $error = 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง';
+            }
         }
     }
 }

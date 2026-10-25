@@ -66,6 +66,9 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start small text-muted">
                 &copy; <?= date('Y') ?> <?= STORE_NAME ?>. All Rights Reserved. สงวนลิขสิทธิ์ตามกฎหมาย
+                <div class="text-secondary small mt-1" style="font-size: 0.78rem;">
+                    * เว็บไซต์นี้เป็นระบบจำลองเพื่อการศึกษาในรายวิชา E-Commerce ไม่มีการจำหน่ายสินค้าหรือตัดเงินจริง
+                </div>
             </div>
             <div class="col-md-6 text-center text-md-end small text-muted mt-2 mt-md-0">
                 <span class="badge bg-light text-dark border me-1"><i class="bi bi-qr-code me-1"></i> PromptPay</span>

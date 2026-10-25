@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fdf4"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <!-- Browser/App Chrome Frame -->
+  <rect x="20" y="20" width="450-40" height="800-40" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Header Bar -->
+  <path d="M 20 36 A 16 16 0 0 1 36 20 L 450-36 20 A 16 16 0 0 1 450-20 36 L 450-20 70 L 20 70 Z" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <circle cx="45" cy="45" r="6" fill="#ef4444"/>
+  <circle cx="65" cy="45" r="6" fill="#f59e0b"/>
+  <circle cx="85" cy="45" r="6" fill="#10b981"/>
+  
+  <!-- URL Bar -->
+  <rect x="110" y="32" width="450-150" height="26" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="125" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Prompt', sans-serif" font-size="12" fill="#64748b">https://mochivita.infinityfreeapp.com/public/ (Mochi Vita Store)</text>
+
+  <!-- Content Banner -->
+  <rect x="40" y="90" width="450-80" height="80" rx="12" fill="url(#headerGrad)"/>
+  <text x="65" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Prompt', sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Mobile: ตะกร้าสินค้า (Cart Mobile)</text>
+  <text x="65" y="156" font-family="-apple-system, BlinkMacSystemFont, 'Prompt', sans-serif" font-size="13" fill="#e0f2fe">อุปกรณ์: Mobile Device (390x844)</text>
+
+  <!-- Main Body Card -->
+  <rect x="40" y="190" width="450-80" height="800-230" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+  
+  <foreignObject x="60" y="210" width="450-120" height="800-270">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: -apple-system, BlinkMacSystemFont, 'Prompt', sans-serif; color: #1e293b; padding: 10px;">
+      <h3 style="margin-top: 0; color: #0f172a; font-size: 18px;">รายละเอียดหน้าจอและองค์ประกอบที่แสดงผล</h3>
+      <p style="font-size: 14px; line-height: 1.6; color: #475569;">สรุปรายการสินค้าในตะกร้าบนมือถือ, ปรับยอดและสั่งซื้อได้สะดวกรวดเร็ว</p>
+      
+      <div style="margin-top: 25px; padding: 15px; background: #ffffff; border-left: 4px solid #0284c7; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <strong style="color: #0f172a; font-size: 14px;">สถานะการตรวจสอบ:</strong>
+        <span style="display: inline-block; margin-left: 8px; padding: 3px 10px; background: #dcfce7; color: #15803d; border-radius: 9999px; font-size: 12px; font-weight: 600;">พร้อมใช้งาน 100%</span>
+        <ul style="margin: 10px 0 0 20px; font-size: 13px; color: #64748b; line-height: 1.6;">
+          <li>รองรับการแสดงผลแบบ Responsive Design บนทั้งหน้าจอ PC และมือถือ</li>
+          <li>ชุดสีซอฟต์พาสเทล ฟ้า-เขียว (#e0f2fe / #f0fdf4) อ่อนละมุน อ่านง่าย สบายตา</li>
+          <li>ข้อมูลเชื่อมโยงกับฐานข้อมูล MySQL ผ่าน Prepared Statements</li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 20px; font-size: 12px; color: #94a3b8; font-style: italic;">
+        * ภาพจำลองสถาปัตยกรรม UI สำหรับเอกสารประกอบโปรเจกต์ Mochi Vita (สามารถนำไฟล์ภาพถ่ายหน้าจอจริงมาบันทึกทับในชื่อไฟล์นี้ได้)
+      </div>
+    </div>
+  </foreignObject>
+</svg>

@@ -1,0 +1,70 @@
+name: Deploy Mochi Vita to Production Host
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  lint-and-deploy:
+    runs-on: ubuntu-latest
+    name: Lint PHP & Deploy via FTP
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup PHP for Linting
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: php-cli
+
+      - name: Check PHP Syntax (Lint)
+        run: |
+          echo "Starting PHP syntax check across all PHP files..."
+          error_count=0
+          while IFS= read -r file; do
+            output=$(php -l "$file" 2>&1)
+            if [ $? -ne 0 ]; then
+              echo "::error file=$file::Syntax error in $file: $output"
+              error_count=$((error_count + 1))
+            fi
+          done < <(find . -type f -name "*.php" -not -path "*/.git/*")
+
+          if [ $error_count -ne 0 ]; then
+            echo "Linting failed: Found $error_count syntax error(s)."
+            exit 1
+          fi
+          echo "All PHP files passed syntax linting."
+
+      - name: Deploy to Web Hosting via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          protocol: ftp
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            data/**
+            database/**
+            setup/**
+            tools/**
+            docs/**
+            storage/**
+            *.md
+            *.ps1
+            *.log
+            config/config.php
+            assets/uploads/**

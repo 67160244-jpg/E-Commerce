@@ -6,6 +6,9 @@ require_once APP_ROOT . '/includes/csrf.php';
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/auth.php';
 
+// ป้องกันสิทธิ์แอดมินเป็นบรรทัดแรก
+require_admin();
+
 $pdo = get_db_connection();
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
