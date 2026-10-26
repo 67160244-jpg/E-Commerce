@@ -34,7 +34,7 @@ define('BASE_URL', '/E-Commerce');
 // ตั้งค่าข้อมูลร้านค้า
 define('STORE_NAME', 'Mochi Vita');
 define('STORE_TAGLINE', 'ร้านวิตามินและอาหารเสริมออนไลน์เพื่อสุขภาพที่ดีของคุณ');
-define('CURRENCY_SYMBOL', '฿');
+define('CURRENCY_SYMBOL', "\u{0E3F}"); // ฿ Thai Baht (ใช้ Unicode escape เพื่อป้องกัน encoding ผิดพลาดบน hosting)
 define('FREE_SHIPPING_THRESHOLD', 999.00);
 define('DEFAULT_SHIPPING_FEE', 50.00);
 

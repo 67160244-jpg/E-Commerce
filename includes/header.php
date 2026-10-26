@@ -6,6 +6,11 @@ require_once APP_ROOT . '/includes/db.php';
 require_once APP_ROOT . '/includes/helpers.php';
 require_once APP_ROOT . '/includes/auth.php';
 
+// ส่ง header charset UTF-8 เพื่อป้องกันอักขระภาษาไทยแสดงผิดบน hosting
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset=utf-8');
+}
+
 // ดึงหมวดหมู่ทั้งหมดสำหรับแสดงในเมนู
 $headerCategories = [];
 try {

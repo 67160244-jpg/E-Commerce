@@ -25,7 +25,7 @@ function e($value): string {
 function format_price($amount, bool $showSymbol = true): string {
     $num = is_numeric($amount) ? (float)$amount : 0.0;
     $formatted = number_format($num, 2);
-    return $showSymbol ? (defined('CURRENCY_SYMBOL') ? CURRENCY_SYMBOL : '฿') . ' ' . $formatted : $formatted;
+    return $showSymbol ? (defined('CURRENCY_SYMBOL') ? CURRENCY_SYMBOL : "\u{0E3F}") . ' ' . $formatted : $formatted;
 }
 
 /**
